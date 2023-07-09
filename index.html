@@ -47,8 +47,12 @@
         var hours = date.getHours();
         var minutes = date.getMinutes();
 
+        // Convert to 12-hour time
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        
         // Pad numbers with a leading zero if needed
-        hours = hours < 10 ? '0' + hours : hours;
         minutes = minutes < 10 ? '0' + minutes : minutes;
 
         // Array to convert month index to month name
@@ -62,7 +66,7 @@
         var month = monthNames[date.getMonth()];
         var year = date.getFullYear();
 
-        var time = hours + ":" + minutes;
+        var time = hours + ":" + minutes + " " + ampm;
         var dateText = dayOfWeek + ", " + dayOfMonth + "th of " + month + " " + year;
 
         document.getElementById("time").innerText = time;
