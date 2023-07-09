@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFF;
+            font-family: Arial, sans-serif;
+        }
+
+        #clock {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        #time {
+            color: white;
+            font-size: 30px;
+        }
+
+        #date {
+            color: white;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="clock">
+    <div id="time"></div>
+    <div id="date"></div>
+</div>
+
+<script>
+    function showTime() {
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+
+        // Pad numbers with a leading zero if needed
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        // Array to convert month index to month name
+        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        // Array to convert day index to day name
+        var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        var dayOfWeek = dayNames[date.getDay()];
+        var dayOfMonth = date.getDate();
+        var month = monthNames[date.getMonth()];
+        var year = date.getFullYear();
+
+        var time = hours + ":" + minutes;
+        var dateText = dayOfWeek + ", " + dayOfMonth + "th of " + month + " " + year;
+
+        document.getElementById("time").innerText = time;
+        document.getElementById("date").innerText = dateText;
+
+        setTimeout(showTime, 1000);
+    }
+
+    showTime();
+</script>
+
+</body>
+</html>
